@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load socialaccount %}
+
+{% block title %} Details of: {{ user.username }} {%endblock%}
+
+{% block content %}
+
+<div class="w3-center">
+    <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" class='profile-picture2' />
+</div>
+
+<div style='text-align: center;'>
+    <p> User Name: {{ user.username }} </p>
+</div>
+<div class="space5" />
+
+<div class='heading' style='text-align: center;'>Posts</div>
+
+
+{% for review in reviews %}
+{% if user.username|striptags == review.user|striptags %}
+<div class='review-box'>
+    <div class='review-text'>
+    <a href="{% url 'review_detail' review.slug %}">{{ review.title }}</a>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

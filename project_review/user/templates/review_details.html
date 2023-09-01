@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{%block title%} {{review.title}} {%endblock%}
+
+{% load socialaccount %}
+
+{% block content %}
+<h2>{{ review.title }}</h2>
+<pre>{{ review.content }}</pre>
+
+{% if user.username|striptags == review.user|striptags %}
+
+<a href="{% url 'delete_review' review.pk %}">Delete</a>
+
+{%  endif %}
+
+{% endblock %}

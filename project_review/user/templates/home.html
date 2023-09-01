@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+    {% for review in reviews %}
+    <div class='review-box'>
+        <div class='review-text'>
+        <h5 class='cap'> {{ review.user }} </h5>
+        <a href="{% url 'review_detail' review.slug %}">{{ review.title }}</a>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
